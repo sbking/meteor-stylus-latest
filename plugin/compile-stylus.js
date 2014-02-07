@@ -2,6 +2,7 @@ var fs = Npm.require('fs');
 var stylus = Npm.require('stylus');
 var nib = Npm.require('nib');
 var Future = Npm.require('fibers/future');
+var autoprefixer = Npm.require('autoprefixer');
 
 Plugin.registerSourceHandler("styl", function(compileStep) {
   // XXX annoying that this is replicated in .css, .less, and .styl
@@ -27,8 +28,11 @@ Plugin.registerSourceHandler("styl", function(compileStep) {
     });
     return;
   }
+  
+  var prefixed_css = autoprefixer.process(css).css;
+  
   compileStep.addStylesheet({
     path: compileStep.inputPath + ".css",
-    data: css
+    data: prefixed_css
   });
 });
