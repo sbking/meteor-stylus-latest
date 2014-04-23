@@ -1,11 +1,12 @@
 var fs = Npm.require('fs');
 var stylus = Npm.require('stylus');
 var nib = Npm.require('nib');
+var path = Npm.require('path');
 var Future = Npm.require('fibers/future');
 
-Plugin.registerSourceHandler("styl", function(compileStep) {
+Plugin.registerSourceHandler("styl", function (compileStep) {
   // XXX annoying that this is replicated in .css, .less, and .styl
-  if (!compileStep.archMatches('browser')) {
+  if (! compileStep.archMatches('browser')) {
     // XXX in the future, might be better to emit some kind of a
     // warning if a stylesheet is included on the server, rather than
     // silently ignoring it. but that would mean you can't stick .css
@@ -17,6 +18,8 @@ Plugin.registerSourceHandler("styl", function(compileStep) {
   stylus(compileStep.read().toString('utf8'))
     .use(nib())
     .set('filename', compileStep.inputPath)
+    // Include needed to allow relative @imports in stylus files
+    .include(path.dirname(compileStep._fullInputPath))
     .render(f.resolver());
 
   try {
@@ -32,3 +35,10 @@ Plugin.registerSourceHandler("styl", function(compileStep) {
     data: css
   });
 });
+
+// Register import.styl files with the dependency watcher, without actually
+// processing them. There is a similar rule in the less package.
+Plugin.registerSourceHandler("import.styl", function () {
+  // Do nothing
+});
+

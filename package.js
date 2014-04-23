@@ -8,14 +8,15 @@ Package._transitional_registerBuildPlugin({
   sources: [
     'plugin/compile-stylus.js'
   ],
-  npmDependencies: {
-    stylus: "0.41.3",
-    nib: "1.0.1"
-  }
+  npmDependencies: { stylus: "0.43.1", nib: "1.0.2" }
 });
 
-Package.on_test(function(api) {
-  api.use(['tinytest', 'stylus-latest', 'test-helpers']);
-  api.use('spark');
-  api.add_files(['stylus_tests.styl', 'stylus_tests.js'], 'client');
+Package.on_test(function (api) {
+  api.use(['tinytest', 'stylus-latest', 'test-helpers', 'templating']);
+  api.add_files([
+    'stylus_tests.html',
+    'stylus_tests.styl',
+    'stylus_tests.import.styl',
+    'stylus_tests.js'
+  ],'client');
 });

@@ -3,6 +3,6 @@
   "description": "Expressive, dynamic, robust CSS",
   "author": "Meteor Development Group",
   "homepage": "https://github.com/sbking/meteor-stylus-latest",
-  "version": "0.41.4",
+  "version": "0.43.1",
   "git": "https://github.com/sbking/meteor-stylus-latest.git"
 }
