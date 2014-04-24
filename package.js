@@ -8,7 +8,7 @@ Package._transitional_registerBuildPlugin({
   sources: [
     'plugin/compile-stylus.js'
   ],
-  npmDependencies: { stylus: "0.43.1", nib: "1.0.2" }
+  npmDependencies: { stylus: "0.44.0", nib: "1.0.2" }
 });
 
 Package.on_test(function (api) {
