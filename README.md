@@ -9,8 +9,8 @@ Updates
 
 The current version of this package uses the following NPM versions:
 
-* [Stylus: 0.44.0](https://www.npmjs.org/package/stylus)
+* [Stylus: 0.47.1](https://www.npmjs.org/package/stylus)
 
-* [Nib: 1.0.2](https://www.npmjs.org/package/nib)
+* [Nib: 1.0.3](https://www.npmjs.org/package/nib)
 
 If these happen to be out of date, please submit an issue or PR.
